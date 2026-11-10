@@ -1,4 +1,4 @@
-# Tournex — Online Sports Tournament Planner
+# Online Sports Tournament Planner
 
 A DBMS mini project based on an IPL-style sports tournament planner.
 
