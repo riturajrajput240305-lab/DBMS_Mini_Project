@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tournex — Tournament Central</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">T</span><span>tournex<span class="brand-dot">.</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <nav>
+        <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+        <a class="nav-link" href="#points"><span>◉</span> Points table</a>
+        <a class="nav-link" href="#matches"><span>◷</span> Match schedule</a>
+        <a class="nav-link" href="#teams"><span>♧</span> Teams & players</a>
+        <a class="nav-link" href="#stats"><span>↗</span> Statistics</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="season-card">
+          <span class="live-dot"></span><span>SEASON 2026</span>
+          <h3>Champions<br>are made here.</h3>
+          <div class="season-progress"><i></i></div>
+          <small>2 of 10 league matches completed</small>
+        </div>
+        <div class="profile"><div class="avatar">AR</div><div><b>Admin User</b><small>Tournament admin</small></div><span class="more">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div><div class="eyebrow">TUESDAY, NOVEMBER 10, 2026</div><h1>Good evening, Admin <span>✦</span></h1></div>
+        <div class="top-actions"><span class="season-pill">● LIVE SEASON</span><button class="icon-button" aria-label="Notifications">♧</button><div class="avatar small">AR</div></div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="hero-tag"><span class="live-dot"></span> THE LEAGUE IS ON</div>
+          <h2>Every match.<br><em>One champion.</em></h2>
+          <p>Your tournament command centre. Follow fixtures, track team performance and keep the leaderboard in sight.</p>
+          <a class="hero-button" href="#matches">Explore fixtures <span>↗</span></a>
+        </div>
+        <div class="hero-art">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="ball"><span></span></div>
+          <div class="hero-stat"><small>NEXT MATCH</small><b>12 NOV</b><span>Mumbai vs Ahmedabad</span></div>
+          <div class="spark s1">✦</div><div class="spark s2">✧</div>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon purple">♧</span><span class="trend">+2 this season</span></div><div class="stat-value">05</div><div class="stat-name">Registered teams</div><div class="stat-foot">Across 5 home cities</div></article>
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon orange">♟</span><span class="trend">Active roster</span></div><div class="stat-value">12</div><div class="stat-name">Total players</div><div class="stat-foot">Across all franchises</div></article>
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon green">◷</span><span class="trend">2 completed</span></div><div class="stat-value">10</div><div class="stat-name">Scheduled matches</div><div class="stat-foot">League stage fixtures</div></article>
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon blue">⚡</span><span class="trend">Top of the table</span></div><div class="stat-value">04</div><div class="stat-name">League points</div><div class="stat-foot">Current leader: Mumbai</div></article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel points-panel" id="points">
+          <div class="section-heading"><div><div class="eyebrow">THE RACE TO THE TOP</div><h2>Points table</h2></div><a href="#points" class="text-link">Full standings ↗</a></div>
+          <div class="table-wrap"><table><thead><tr><th>POS</th><th>TEAM</th><th>P</th><th>W</th><th>L</th><th>PTS</th></tr></thead>
+            <tbody>
+              <tr class="leader"><td><span class="rank rank-one">01</span></td><td><div class="team-cell"><span class="team-logo mumbai">M</span><b>Mumbai Mariners</b></div></td><td>1</td><td>1</td><td>0</td><td><b class="points">2</b></td></tr>
+              <tr><td><span class="rank">02</span></td><td><div class="team-cell"><span class="team-logo delhi">D</span><b>Delhi Dynamos</b></div></td><td>1</td><td>1</td><td>0</td><td><b class="points">2</b></td></tr>
+              <tr><td><span class="rank">03</span></td><td><div class="team-cell"><span class="team-logo bengaluru">B</span><b>Bengaluru Blazers</b></div></td><td>1</td><td>0</td><td>1</td><td><b>0</b></td></tr>
+              <tr><td><span class="rank">04</span></td><td><div class="team-cell"><span class="team-logo kolkata">K</span><b>Kolkata Knights</b></div></td><td>1</td><td>0</td><td>1</td><td><b>0</b></td></tr>
+              <tr><td><span class="rank">05</span></td><td><div class="team-cell"><span class="team-logo ahmedabad">A</span><b>Ahmedabad Titans</b></div></td><td>0</td><td>0</td><td>0</td><td><b>0</b></td></tr>
+            </tbody></table></div>
+          <div class="table-note"><span>●</span> Top 4 teams qualify for playoffs</div>
+        </section>
+
+        <section class="panel matches-panel" id="matches">
+          <div class="section-heading"><div><div class="eyebrow">DON'T MISS THE ACTION</div><h2>Upcoming matches</h2></div><a href="#matches" class="text-link">All fixtures ↗</a></div>
+          <article class="match-card featured-match"><div class="match-meta"><span class="upcoming">UPCOMING</span><span>12 NOV · 7:30 PM</span></div><div class="match-teams"><div class="match-team"><span class="team-logo mumbai">M</span><b>MUM</b></div><span class="vs">VS</span><div class="match-team"><span class="team-logo ahmedabad">A</span><b>AHM</b></div></div><div class="match-venue">⌖ Narendra Modi Stadium, Ahmedabad</div></article>
+          <article class="match-card"><div class="match-meta"><span class="upcoming">UPCOMING</span><span>14 NOV · 7:30 PM</span></div><div class="match-teams"><div class="match-team"><span class="team-logo bengaluru">B</span><b>BLR</b></div><span class="vs">VS</span><div class="match-team"><span class="team-logo kolkata">K</span><b>KOL</b></div></div><div class="match-venue">⌖ M. Chinnaswamy Stadium, Bengaluru</div></article>
+          <article class="match-card"><div class="match-meta"><span class="upcoming">UPCOMING</span><span>16 NOV · 7:30 PM</span></div><div class="match-teams"><div class="match-team"><span class="team-logo delhi">D</span><b>DEL</b></div><span class="vs">VS</span><div class="match-team"><span class="team-logo ahmedabad">A</span><b>AHM</b></div></div><div class="match-venue">⌖ Arun Jaitley Stadium, Delhi</div></article>
+        </section>
+      </div>
+
+      <section class="panel roster-panel" id="teams">
+        <div class="section-heading"><div><div class="eyebrow">MEET THE CONTENDERS</div><h2>Teams & player roster</h2></div><span class="roster-count">5 TEAMS · 12 PLAYERS</span></div>
+        <div class="roster-grid">
+          <article class="roster-card"><span class="team-logo mumbai large">M</span><div><b>Mumbai Mariners</b><small>Mumbai · 3 players</small></div><span class="roster-arrow">↗</span></article>
+          <article class="roster-card"><span class="team-logo bengaluru large">B</span><div><b>Bengaluru Blazers</b><small>Bengaluru · 3 players</small></div><span class="roster-arrow">↗</span></article>
+          <article class="roster-card"><span class="team-logo kolkata large">K</span><div><b>Kolkata Knights</b><small>Kolkata · 2 players</small></div><span class="roster-arrow">↗</span></article>
+          <article class="roster-card"><span class="team-logo delhi large">D</span><div><b>Delhi Dynamos</b><small>Delhi · 2 players</small></div><span class="roster-arrow">↗</span></article>
+          <article class="roster-card"><span class="team-logo ahmedabad large">A</span><div><b>Ahmedabad Titans</b><small>Ahmedabad · 2 players</small></div><span class="roster-arrow">↗</span></article>
+        </div>
+      </section>
+      <footer><span>TOURNEX © 2026</span><span>BUILT FOR THE LOVE OF THE GAME <b>✦</b></span></footer>
+    </main>
+  </div>
+</body>
+</html>
