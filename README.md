@@ -28,3 +28,4 @@ Open `index.html` directly in a browser. No build tools or server are required.
 ## Main DBMS concepts demonstrated
 Primary keys, foreign keys, UNIQUE, CHECK, NOT NULL, joins, LIKE, aggregate functions, GROUP BY, subqueries, CASE, NVL, DENSE_RANK and indexes.
 # DBMS_Mini_Project
+# DBMS_Mini_Project
