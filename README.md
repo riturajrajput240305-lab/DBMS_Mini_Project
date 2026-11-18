@@ -4,7 +4,7 @@ A DBMS mini project based on an IPL-style sports tournament planner.
 
 ## Included
 - `database.sql` — Oracle SQL schema, constraints, sample records, indexes and queries.
-- `index.html` — Responsive tournament dashboard UI.
+- `index.html` — Responsive black-and-white entertainment tournament UI with browser-side team, player, venue, match, scoreboard and points-table management.
 - `style.css` — Styling and responsive layouts.
 
 ## Database setup (Oracle SQL Developer)
@@ -21,9 +21,10 @@ Open `index.html` directly in a browser. No build tools or server are required.
 
 ## Scope / limitations
 - PL/SQL procedures and triggers are intentionally excluded as requested.
-- The HTML/CSS frontend is a static prototype populated with illustrative sample data. It is not connected to Oracle. A backend (for example Java JDBC, PHP, or Node.js) is needed for live database integration.
+- The HTML/CSS frontend starts empty and stores teams, players and manually managed matches in browser local storage. It is not connected to Oracle. A backend (for example Java JDBC, PHP, or Node.js) is needed for live database integration.
+- Player rosters can be filtered by name or role, and completed match scores update the points table in real time using win/tie point rules.
 - Points table logic is demonstrated in `database.sql` using SQL aggregation, conditional expressions, subqueries and analytic ranking.
-- The sample points shown in the static page are illustrative and should be refreshed if you change the SQL sample data.
+- The SQL file still contains illustrative sample records for demonstrating database queries; the browser UI is intentionally empty on first use.
 
 ## Main DBMS concepts demonstrated
 Primary keys, foreign keys, UNIQUE, CHECK, NOT NULL, joins, LIKE, aggregate functions, GROUP BY, subqueries, CASE, NVL, DENSE_RANK and indexes.

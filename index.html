@@ -3,97 +3,565 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tournex — Tournament Central</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Tournament Planner</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <a class="brand" href="#"><span class="brand-mark">T</span><span>tournex<span class="brand-dot">.</span></span></a>
-      <div class="side-label">WORKSPACE</div>
-      <nav>
-        <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
-        <a class="nav-link" href="#points"><span>◉</span> Points table</a>
-        <a class="nav-link" href="#matches"><span>◷</span> Match schedule</a>
-        <a class="nav-link" href="#teams"><span>♧</span> Teams & players</a>
-        <a class="nav-link" href="#stats"><span>↗</span> Statistics</a>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="season-card">
-          <span class="live-dot"></span><span>SEASON 2026</span>
-          <h3>Champions<br>are made here.</h3>
-          <div class="season-progress"><i></i></div>
-          <small>2 of 10 league matches completed</small>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">DBMS MINI PROJECT</p>
+      <h1>Tournament planner</h1>
+      <p class="subtitle">Manage teams, player rosters and match results.</p>
+    </div>
+    <button class="button button-dark" id="clear-data" type="button">Clear all data</button>
+  </header>
+
+  <main class="page">
+    <section class="summary" aria-label="Tournament summary">
+      <div class="summary-item"><strong id="team-count">0</strong><span>Teams</span></div>
+      <div class="summary-item"><strong id="match-count">0</strong><span>Matches</span></div>
+      <div class="summary-item"><strong id="completed-count">0</strong><span>Completed</span></div>
+      <div class="summary-item"><strong id="player-count">0</strong><span>Players</span></div>
+    </section>
+
+    <div class="layout">
+      <section class="panel" id="teams">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">TEAM MANAGEMENT</p>
+            <h2>Teams</h2>
+          </div>
+          <span class="count-label" id="team-count-label">0 teams</span>
         </div>
-        <div class="profile"><div class="avatar">AR</div><div><b>Admin User</b><small>Tournament admin</small></div><span class="more">•••</span></div>
+
+        <form class="form" id="team-form">
+          <label>
+            Team name
+            <input id="team-name" name="teamName" type="text" placeholder="e.g. Mumbai Mariners" required>
+          </label>
+          <label>
+            City
+            <input id="team-city" name="teamCity" type="text" placeholder="e.g. Mumbai" required>
+          </label>
+          <button class="button button-dark" type="submit">Add team</button>
+        </form>
+
+        <div class="list" id="team-list" aria-live="polite"></div>
+      </section>
+
+      <section class="panel" id="matches">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">MANUAL FIXTURES</p>
+            <h2>Matches</h2>
+          </div>
+          <span class="count-label" id="match-count-label">0 matches</span>
+        </div>
+
+        <form class="form match-form" id="match-form">
+          <input id="match-id" type="hidden">
+          <div class="form-grid">
+            <label>
+              Team 1
+              <select id="home-team" required></select>
+            </label>
+            <label>
+              Team 2
+              <select id="away-team" required></select>
+            </label>
+            <label>
+              Date
+              <input id="match-date" type="date" required>
+            </label>
+            <label>
+              Venue
+              <input id="match-venue" type="text" placeholder="e.g. Main stadium" required>
+            </label>
+            <label>
+              Status
+              <select id="match-status">
+                <option value="Upcoming">Upcoming</option>
+                <option value="Live">Live</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </label>
+            <label>
+              Team 1 score
+              <input id="home-score" type="number" min="0" placeholder="0">
+            </label>
+            <label>
+              Team 2 score
+              <input id="away-score" type="number" min="0" placeholder="0">
+            </label>
+          </div>
+          <div class="form-actions">
+            <button class="button button-dark" id="match-submit" type="submit">Add match</button>
+            <button class="button button-light hidden" id="cancel-edit" type="button">Cancel edit</button>
+          </div>
+          <p class="form-message" id="form-message" role="alert"></p>
+        </form>
+
+        <div class="list" id="match-list" aria-live="polite"></div>
+      </section>
+    </div>
+
+    <section class="panel players-panel" id="players">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">PLAYER MANAGEMENT</p>
+          <h2>Players by team</h2>
+        </div>
+        <span class="count-label" id="player-count-label">0 players</span>
       </div>
-    </aside>
 
-    <main class="main-content" id="overview">
-      <header class="topbar">
-        <div><div class="eyebrow">TUESDAY, NOVEMBER 10, 2026</div><h1>Good evening, Admin <span>✦</span></h1></div>
-        <div class="top-actions"><span class="season-pill">● LIVE SEASON</span><button class="icon-button" aria-label="Notifications">♧</button><div class="avatar small">AR</div></div>
-      </header>
-
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="hero-tag"><span class="live-dot"></span> THE LEAGUE IS ON</div>
-          <h2>Every match.<br><em>One champion.</em></h2>
-          <p>Your tournament command centre. Follow fixtures, track team performance and keep the leaderboard in sight.</p>
-          <a class="hero-button" href="#matches">Explore fixtures <span>↗</span></a>
+      <form class="form" id="player-form">
+        <div class="form-grid">
+          <label>
+            Player name
+            <input id="player-name" type="text" placeholder="e.g. Aarav Sharma" required>
+          </label>
+          <label>
+            Team
+            <select id="player-team" required></select>
+          </label>
+          <label>
+            Role
+            <select id="player-role">
+              <option>Batter</option>
+              <option>Bowler</option>
+              <option>All-Rounder</option>
+              <option>Wicket-Keeper</option>
+            </select>
+          </label>
         </div>
-        <div class="hero-art">
-          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-          <div class="ball"><span></span></div>
-          <div class="hero-stat"><small>NEXT MATCH</small><b>12 NOV</b><span>Mumbai vs Ahmedabad</span></div>
-          <div class="spark s1">✦</div><div class="spark s2">✧</div>
+        <div class="filter-row">
+          <label>
+            Filter by player name
+            <input id="player-filter-name" type="search" placeholder="Search roster">
+          </label>
+          <label>
+            Filter by role
+            <select id="player-filter-role">
+              <option value="">All roles</option>
+              <option>Batter</option>
+              <option>Bowler</option>
+              <option>All-Rounder</option>
+              <option>Wicket-Keeper</option>
+            </select>
+          </label>
         </div>
-      </section>
+        <button class="button button-dark" id="player-submit" type="submit">Add player</button>
+        <p class="form-message" id="player-message" role="alert"></p>
+      </form>
 
-      <section class="stats-grid">
-        <article class="stat-card"><div class="stat-top"><span class="stat-icon purple">♧</span><span class="trend">+2 this season</span></div><div class="stat-value">05</div><div class="stat-name">Registered teams</div><div class="stat-foot">Across 5 home cities</div></article>
-        <article class="stat-card"><div class="stat-top"><span class="stat-icon orange">♟</span><span class="trend">Active roster</span></div><div class="stat-value">12</div><div class="stat-name">Total players</div><div class="stat-foot">Across all franchises</div></article>
-        <article class="stat-card"><div class="stat-top"><span class="stat-icon green">◷</span><span class="trend">2 completed</span></div><div class="stat-value">10</div><div class="stat-name">Scheduled matches</div><div class="stat-foot">League stage fixtures</div></article>
-        <article class="stat-card"><div class="stat-top"><span class="stat-icon blue">⚡</span><span class="trend">Top of the table</span></div><div class="stat-value">04</div><div class="stat-name">League points</div><div class="stat-foot">Current leader: Mumbai</div></article>
-      </section>
+      <div class="roster-grid" id="player-list" aria-live="polite"></div>
+    </section>
 
-      <div class="content-grid">
-        <section class="panel points-panel" id="points">
-          <div class="section-heading"><div><div class="eyebrow">THE RACE TO THE TOP</div><h2>Points table</h2></div><a href="#points" class="text-link">Full standings ↗</a></div>
-          <div class="table-wrap"><table><thead><tr><th>POS</th><th>TEAM</th><th>P</th><th>W</th><th>L</th><th>PTS</th></tr></thead>
-            <tbody>
-              <tr class="leader"><td><span class="rank rank-one">01</span></td><td><div class="team-cell"><span class="team-logo mumbai">M</span><b>Mumbai Mariners</b></div></td><td>1</td><td>1</td><td>0</td><td><b class="points">2</b></td></tr>
-              <tr><td><span class="rank">02</span></td><td><div class="team-cell"><span class="team-logo delhi">D</span><b>Delhi Dynamos</b></div></td><td>1</td><td>1</td><td>0</td><td><b class="points">2</b></td></tr>
-              <tr><td><span class="rank">03</span></td><td><div class="team-cell"><span class="team-logo bengaluru">B</span><b>Bengaluru Blazers</b></div></td><td>1</td><td>0</td><td>1</td><td><b>0</b></td></tr>
-              <tr><td><span class="rank">04</span></td><td><div class="team-cell"><span class="team-logo kolkata">K</span><b>Kolkata Knights</b></div></td><td>1</td><td>0</td><td>1</td><td><b>0</b></td></tr>
-              <tr><td><span class="rank">05</span></td><td><div class="team-cell"><span class="team-logo ahmedabad">A</span><b>Ahmedabad Titans</b></div></td><td>0</td><td>0</td><td>0</td><td><b>0</b></td></tr>
-            </tbody></table></div>
-          <div class="table-note"><span>●</span> Top 4 teams qualify for playoffs</div>
-        </section>
-
-        <section class="panel matches-panel" id="matches">
-          <div class="section-heading"><div><div class="eyebrow">DON'T MISS THE ACTION</div><h2>Upcoming matches</h2></div><a href="#matches" class="text-link">All fixtures ↗</a></div>
-          <article class="match-card featured-match"><div class="match-meta"><span class="upcoming">UPCOMING</span><span>12 NOV · 7:30 PM</span></div><div class="match-teams"><div class="match-team"><span class="team-logo mumbai">M</span><b>MUM</b></div><span class="vs">VS</span><div class="match-team"><span class="team-logo ahmedabad">A</span><b>AHM</b></div></div><div class="match-venue">⌖ Narendra Modi Stadium, Ahmedabad</div></article>
-          <article class="match-card"><div class="match-meta"><span class="upcoming">UPCOMING</span><span>14 NOV · 7:30 PM</span></div><div class="match-teams"><div class="match-team"><span class="team-logo bengaluru">B</span><b>BLR</b></div><span class="vs">VS</span><div class="match-team"><span class="team-logo kolkata">K</span><b>KOL</b></div></div><div class="match-venue">⌖ M. Chinnaswamy Stadium, Bengaluru</div></article>
-          <article class="match-card"><div class="match-meta"><span class="upcoming">UPCOMING</span><span>16 NOV · 7:30 PM</span></div><div class="match-teams"><div class="match-team"><span class="team-logo delhi">D</span><b>DEL</b></div><span class="vs">VS</span><div class="match-team"><span class="team-logo ahmedabad">A</span><b>AHM</b></div></div><div class="match-venue">⌖ Arun Jaitley Stadium, Delhi</div></article>
-        </section>
+    <section class="panel standings-panel" id="standings">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">REAL-TIME SUBQUERY VIEW</p>
+          <h2>Points table</h2>
+        </div>
+        <span class="count-label">2 points per win · 1 for a tie</span>
       </div>
+      <div class="table-wrap">
+        <table class="standings-table">
+          <thead>
+            <tr><th>POS</th><th>TEAM</th><th>PLAYED</th><th>WON</th><th>LOST</th><th>POINTS</th></tr>
+          </thead>
+          <tbody id="standings-list"></tbody>
+        </table>
+      </div>
+      <p class="empty-state" id="standings-empty">Add teams to build the points table.</p>
+    </section>
+  </main>
 
-      <section class="panel roster-panel" id="teams">
-        <div class="section-heading"><div><div class="eyebrow">MEET THE CONTENDERS</div><h2>Teams & player roster</h2></div><span class="roster-count">5 TEAMS · 12 PLAYERS</span></div>
-        <div class="roster-grid">
-          <article class="roster-card"><span class="team-logo mumbai large">M</span><div><b>Mumbai Mariners</b><small>Mumbai · 3 players</small></div><span class="roster-arrow">↗</span></article>
-          <article class="roster-card"><span class="team-logo bengaluru large">B</span><div><b>Bengaluru Blazers</b><small>Bengaluru · 3 players</small></div><span class="roster-arrow">↗</span></article>
-          <article class="roster-card"><span class="team-logo kolkata large">K</span><div><b>Kolkata Knights</b><small>Kolkata · 2 players</small></div><span class="roster-arrow">↗</span></article>
-          <article class="roster-card"><span class="team-logo delhi large">D</span><div><b>Delhi Dynamos</b><small>Delhi · 2 players</small></div><span class="roster-arrow">↗</span></article>
-          <article class="roster-card"><span class="team-logo ahmedabad large">A</span><div><b>Ahmedabad Titans</b><small>Ahmedabad · 2 players</small></div><span class="roster-arrow">↗</span></article>
-        </div>
-      </section>
-      <footer><span>TOURNEX © 2026</span><span>BUILT FOR THE LOVE OF THE GAME <b>✦</b></span></footer>
-    </main>
-  </div>
+  <footer>
+    <span>TOURNAMENT PLANNER</span>
+    <span>All data is stored in this browser.</span>
+  </footer>
+
+  <script>
+    const storageKey = "tournament-planner-data";
+    const state = JSON.parse(localStorage.getItem(storageKey) || '{"teams":[],"matches":[],"players":[]}');
+    state.teams ||= [];
+    state.matches ||= [];
+    state.players ||= [];
+
+    const elements = {
+      teamForm: document.querySelector("#team-form"),
+      teamName: document.querySelector("#team-name"),
+      teamCity: document.querySelector("#team-city"),
+      teamList: document.querySelector("#team-list"),
+      playerForm: document.querySelector("#player-form"),
+      playerName: document.querySelector("#player-name"),
+      playerTeam: document.querySelector("#player-team"),
+      playerRole: document.querySelector("#player-role"),
+      playerFilterName: document.querySelector("#player-filter-name"),
+      playerFilterRole: document.querySelector("#player-filter-role"),
+      playerList: document.querySelector("#player-list"),
+      playerSubmit: document.querySelector("#player-submit"),
+      playerMessage: document.querySelector("#player-message"),
+      homeTeam: document.querySelector("#home-team"),
+      awayTeam: document.querySelector("#away-team"),
+      matchForm: document.querySelector("#match-form"),
+      matchId: document.querySelector("#match-id"),
+      matchDate: document.querySelector("#match-date"),
+      matchVenue: document.querySelector("#match-venue"),
+      matchStatus: document.querySelector("#match-status"),
+      homeScore: document.querySelector("#home-score"),
+      awayScore: document.querySelector("#away-score"),
+      matchList: document.querySelector("#match-list"),
+      matchSubmit: document.querySelector("#match-submit"),
+      cancelEdit: document.querySelector("#cancel-edit"),
+      formMessage: document.querySelector("#form-message"),
+      clearData: document.querySelector("#clear-data")
+    };
+
+    function save() {
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    function createElement(tag, className, text) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      if (text !== undefined) element.textContent = text;
+      return element;
+    }
+
+    function showMessage(message) {
+      elements.formMessage.textContent = message;
+    }
+
+    function renderSummary() {
+      document.querySelector("#team-count").textContent = state.teams.length;
+      document.querySelector("#match-count").textContent = state.matches.length;
+      document.querySelector("#completed-count").textContent =
+        state.matches.filter((match) => match.status === "Completed").length;
+      document.querySelector("#player-count").textContent = state.players.length;
+      document.querySelector("#team-count-label").textContent =
+        `${state.teams.length} team${state.teams.length === 1 ? "" : "s"}`;
+      document.querySelector("#match-count-label").textContent =
+        `${state.matches.length} match${state.matches.length === 1 ? "" : "es"}`;
+      document.querySelector("#player-count-label").textContent =
+        `${state.players.length} player${state.players.length === 1 ? "" : "s"}`;
+    }
+
+    function renderTeamOptions() {
+      const options = state.teams.map((team) => {
+        const option = createElement("option", "", team.name);
+        option.value = team.id;
+        return option;
+      });
+      elements.homeTeam.replaceChildren(...options.map((option) => option.cloneNode(true)));
+      elements.awayTeam.replaceChildren(...options);
+      const disabled = state.teams.length < 2;
+      elements.homeTeam.disabled = disabled;
+      elements.awayTeam.disabled = disabled;
+      elements.matchSubmit.disabled = disabled;
+
+      const playerOptions = state.teams.map((team) => {
+        const option = createElement("option", "", team.name);
+        option.value = team.id;
+        return option;
+      });
+      elements.playerTeam.replaceChildren(...playerOptions);
+      elements.playerTeam.disabled = !state.teams.length;
+      elements.playerSubmit.disabled = !state.teams.length;
+    }
+
+    function renderTeams() {
+      elements.teamList.replaceChildren();
+      if (!state.teams.length) {
+        elements.teamList.append(createElement("p", "empty-state", "No teams added yet."));
+        return;
+      }
+
+      state.teams.forEach((team) => {
+        const item = createElement("article", "list-item");
+        const details = createElement("div");
+        details.append(createElement("strong", "", team.name));
+        details.append(createElement("span", "", team.city));
+        const deleteButton = createElement("button", "button button-danger", "Delete");
+        deleteButton.type = "button";
+        deleteButton.addEventListener("click", () => deleteTeam(team.id));
+        item.append(details, deleteButton);
+        elements.teamList.append(item);
+      });
+    }
+
+    function renderMatches() {
+      elements.matchList.replaceChildren();
+      if (!state.matches.length) {
+        elements.matchList.append(createElement("p", "empty-state", "No matches scheduled yet."));
+        return;
+      }
+
+      state.matches
+        .slice()
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .forEach((match) => {
+          const home = state.teams.find((team) => team.id === match.homeId);
+          const away = state.teams.find((team) => team.id === match.awayId);
+          if (!home || !away) return;
+          const item = createElement("article", "list-item match-item");
+          const details = createElement("div");
+          const matchup = createElement("strong", "", `${home.name}  vs  ${away.name}`);
+          const metadata = createElement(
+            "span",
+            "",
+            `${formatDate(match.date)} · ${match.venue} · ${match.status}${
+              match.status === "Completed" ? ` · Score ${match.homeScore}-${match.awayScore}` : ""
+            }`
+          );
+          details.append(matchup, metadata);
+          const actions = createElement("div", "item-actions");
+          const editButton = createElement("button", "button button-light", "Edit");
+          editButton.type = "button";
+          editButton.addEventListener("click", () => editMatch(match));
+          const deleteButton = createElement("button", "button button-danger", "Delete");
+          deleteButton.type = "button";
+          deleteButton.addEventListener("click", () => deleteMatch(match.id));
+          actions.append(editButton, deleteButton);
+          item.append(details, actions);
+          elements.matchList.append(item);
+        });
+    }
+
+    function renderPlayers() {
+      elements.playerList.replaceChildren();
+      const nameFilter = elements.playerFilterName.value.trim().toLowerCase();
+      const roleFilter = elements.playerFilterRole.value;
+      const filteredPlayers = state.players.filter((player) =>
+        player.name.toLowerCase().includes(nameFilter) &&
+        (!roleFilter || player.role === roleFilter)
+      );
+
+      if (!filteredPlayers.length) {
+        elements.playerList.append(createElement(
+          "p",
+          "empty-state",
+          state.players.length ? "No players match these filters." : "No players added yet."
+        ));
+        return;
+      }
+
+      state.teams.forEach((team) => {
+        const players = filteredPlayers.filter((player) => player.teamId === team.id);
+        if (!players.length) return;
+        const group = createElement("div", "roster-group");
+        group.append(createElement("h3", "", team.name));
+        players.forEach((player) => {
+          const item = createElement("div", "roster-player");
+          const details = createElement("div");
+          details.append(
+            createElement("strong", "", player.name),
+            createElement("span", "", player.role)
+          );
+          const deleteButton = createElement("button", "button button-danger", "Delete");
+          deleteButton.type = "button";
+          deleteButton.addEventListener("click", () => deletePlayer(player.id));
+          item.append(details, deleteButton);
+          group.append(item);
+        });
+        elements.playerList.append(group);
+      });
+    }
+
+    function renderStandings() {
+      const standings = state.teams.map((team) => ({
+        team,
+        played: 0,
+        won: 0,
+        lost: 0,
+        points: 0
+      }));
+
+      state.matches
+        .filter((match) => match.status === "Completed")
+        .forEach((match) => {
+          const home = standings.find((entry) => entry.team.id === match.homeId);
+          const away = standings.find((entry) => entry.team.id === match.awayId);
+          if (!home || !away) return;
+          home.played++;
+          away.played++;
+          const homeScore = Number(match.homeScore || 0);
+          const awayScore = Number(match.awayScore || 0);
+          if (homeScore === awayScore) {
+            home.points++;
+            away.points++;
+          } else if (homeScore > awayScore) {
+            home.won++;
+            away.lost++;
+            home.points += 2;
+          } else {
+            away.won++;
+            home.lost++;
+            away.points += 2;
+          }
+        });
+
+      standings.sort((a, b) =>
+        b.points - a.points ||
+        b.won - a.won ||
+        a.team.name.localeCompare(b.team.name)
+      );
+      const list = document.querySelector("#standings-list");
+      list.replaceChildren();
+      document.querySelector("#standings-empty").hidden = Boolean(standings.length);
+      standings.forEach((entry, index) => {
+        const row = document.createElement("tr");
+        [
+          String(index + 1).padStart(2, "0"),
+          entry.team.name,
+          entry.played,
+          entry.won,
+          entry.lost,
+          entry.points
+        ].forEach((value, valueIndex) => {
+          const cell = createElement("td", "", value);
+          if (valueIndex === 1 || valueIndex === 5) cell.className = "table-emphasis";
+          row.append(cell);
+        });
+        list.append(row);
+      });
+    }
+
+    function formatDate(date) {
+      return new Date(`${date}T00:00:00`).toLocaleDateString(undefined, {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      });
+    }
+
+    function resetMatchForm() {
+      elements.matchForm.reset();
+      elements.matchId.value = "";
+      elements.matchSubmit.textContent = "Add match";
+      elements.cancelEdit.classList.add("hidden");
+      showMessage("");
+    }
+
+    function deleteTeam(teamId) {
+      state.teams.splice(state.teams.findIndex((team) => team.id === teamId), 1);
+      state.matches = state.matches.filter((match) => match.homeId !== teamId && match.awayId !== teamId);
+      state.players = state.players.filter((player) => player.teamId !== teamId);
+      save();
+      render();
+    }
+
+    function deletePlayer(playerId) {
+      state.players.splice(state.players.findIndex((player) => player.id === playerId), 1);
+      save();
+      render();
+    }
+
+    function deleteMatch(matchId) {
+      state.matches.splice(state.matches.findIndex((match) => match.id === matchId), 1);
+      save();
+      render();
+    }
+
+    function editMatch(match) {
+      elements.matchId.value = match.id;
+      elements.homeTeam.value = match.homeId;
+      elements.awayTeam.value = match.awayId;
+      elements.matchDate.value = match.date;
+      elements.matchVenue.value = match.venue;
+      elements.matchStatus.value = match.status;
+      elements.homeScore.value = match.homeScore;
+      elements.awayScore.value = match.awayScore;
+      elements.matchSubmit.textContent = "Save changes";
+      elements.cancelEdit.classList.remove("hidden");
+      elements.matchForm.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function render() {
+      renderSummary();
+      renderTeamOptions();
+      renderTeams();
+      renderMatches();
+      renderPlayers();
+      renderStandings();
+    }
+
+    elements.teamForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      state.teams.push({
+        id: crypto.randomUUID(),
+        name: elements.teamName.value.trim(),
+        city: elements.teamCity.value.trim()
+      });
+      save();
+      elements.teamForm.reset();
+      render();
+      elements.teamName.focus();
+    });
+
+    elements.playerForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!elements.playerTeam.value) {
+        elements.playerMessage.textContent = "Add a team before adding players.";
+        return;
+      }
+      state.players.push({
+        id: crypto.randomUUID(),
+        name: elements.playerName.value.trim(),
+        teamId: elements.playerTeam.value,
+        role: elements.playerRole.value
+      });
+      save();
+      elements.playerForm.reset();
+      elements.playerMessage.textContent = "";
+      render();
+      elements.playerName.focus();
+    });
+
+    elements.playerFilterName.addEventListener("input", renderPlayers);
+    elements.playerFilterRole.addEventListener("change", renderPlayers);
+
+    elements.matchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (elements.homeTeam.value === elements.awayTeam.value) {
+        showMessage("Choose two different teams.");
+        return;
+      }
+
+      const homeScore = elements.homeScore.value === "" ? 0 : Number(elements.homeScore.value);
+      const awayScore = elements.awayScore.value === "" ? 0 : Number(elements.awayScore.value);
+      const match = {
+        id: elements.matchId.value || crypto.randomUUID(),
+        homeId: elements.homeTeam.value,
+        awayId: elements.awayTeam.value,
+        date: elements.matchDate.value,
+        venue: elements.matchVenue.value.trim(),
+        status: elements.matchStatus.value,
+        homeScore,
+        awayScore
+      };
+      const existingIndex = state.matches.findIndex((item) => item.id === match.id);
+      if (existingIndex === -1) state.matches.push(match);
+      else state.matches[existingIndex] = match;
+      save();
+      resetMatchForm();
+      render();
+    });
+
+    elements.cancelEdit.addEventListener("click", resetMatchForm);
+    elements.clearData.addEventListener("click", () => {
+      if (!state.teams.length && !state.matches.length && !state.players.length) return;
+      if (!window.confirm("Remove all teams, players and matches?")) return;
+      state.teams.length = 0;
+      state.matches.length = 0;
+      state.players.length = 0;
+      save();
+      resetMatchForm();
+      render();
+    });
+
+    render();
+  </script>
 </body>
 </html>
