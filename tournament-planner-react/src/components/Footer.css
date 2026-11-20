@@ -1,0 +1,29 @@
+.site-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.site-footer__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+.site-footer__brand {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 480px) {
+  .site-footer__inner {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
+

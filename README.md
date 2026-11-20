@@ -1,33 +1,46 @@
 # Online Sports Tournament Planner
 
-A DBMS mini project based on an IPL-style sports tournament planner.
+A comprehensive DBMS mini project based on an IPL-style sports tournament planner.
 
-## Included
-- `database.sql` — Oracle SQL schema, constraints, sample records, indexes and queries.
-- `index.html` — Responsive black-and-white entertainment tournament UI with browser-side team, player, venue, match, scoreboard and points-table management.
-- `style.css` — Styling and responsive layouts.
+## Architecture & Storage
+- **`database.sql` — Single Source of Truth**: Full Oracle SQL schema, constraints, sample records, complex queries, analytical points calculation, and indexes. All application data (Teams, Players, Matches, Scoreboard, Player Stats, Venues) is stored in and synchronized directly to this SQL file.
+- **`tournament-planner-react/` — Modern React 19 Frontend**:
+  - **iOS Glassmorphism & Framer Motion**: Frosted glass effects (`backdrop-filter: blur(20px)`), smooth animations, full-screen snap-scrolling cards.
+  - **Cricket History Constellation Background**: Interactive background featuring historic milestone dates in cricket that brighten and reveal details on mouse hover.
+  - **Public View & Admin View**: Public portal for fans (live match scores, points table, squad rosters, stats) and an authenticated Admin Portal for organizers.
+  - **Live SQL Sync**: Direct two-way synchronization with `database.sql` on disk. Changes made in the UI update `database.sql` in real-time.
+- **`STUDY_GUIDE.md`**: Complete theoretical and viva preparation guide covering SQL queries, normalization, ACID properties, subqueries, and execution in Oracle SQL Developer.
 
-## Database setup (Oracle SQL Developer)
-1. Open SQL Developer and connect to your schema.
+---
+
+## Quick Start
+
+### 1. Launch the React Web Application
+```bash
+cd tournament-planner-react
+npm install
+npm run dev
+```
+Open **http://localhost:3000/** in your browser.
+
+- **Public View**: Displays fixtures, live match scores, points table leaderboard, and squad rosters.
+- **Admin Login**: Click **"🔒 Admin Login"** in the top navbar.
+  - **Username**: `admin`
+  - **Password**: `admin123` *(or `admin`)*
+- **Live SQL Inspection**: In Admin Mode, click **"💾 database.sql"** to view and download the live SQL file anytime.
+
+### 2. Execute in Oracle SQL Developer
+1. Open Oracle SQL Developer and connect to your database schema.
 2. Open `database.sql`.
-3. Execute the script from top to bottom using **Run Script (F5)**.
-4. Review the query outputs in the Script Output / Results panel.
+3. Run the script using **Run Script (F5)**.
+4. Verify results in the Script Output panel.
 
-Important: This script is designed for a fresh schema. If you have already created these tables, drop the tables in reverse dependency order before rerunning:
-PLAYER_STATS, SCOREBOARD, MATCH_SCHEDULE, PLAYER, TEAM, VENUE.
+---
 
-## Frontend setup
-Open `index.html` directly in a browser. No build tools or server are required.
-
-## Scope / limitations
-- PL/SQL procedures and triggers are intentionally excluded as requested.
-- The HTML/CSS frontend starts empty and stores teams, players and manually managed matches in browser local storage. It is not connected to Oracle. A backend (for example Java JDBC, PHP, or Node.js) is needed for live database integration.
-- Player rosters can be filtered by name or role, and completed match scores update the points table in real time using win/tie point rules.
-- Points table logic is demonstrated in `database.sql` using SQL aggregation, conditional expressions, subqueries and analytic ranking.
-- The SQL file still contains illustrative sample records for demonstrating database queries; the browser UI is intentionally empty on first use.
-
-## Main DBMS concepts demonstrated
-Primary keys, foreign keys, UNIQUE, CHECK, NOT NULL, joins, LIKE, aggregate functions, GROUP BY, subqueries, CASE, NVL, DENSE_RANK and indexes.
-# DBMS_Mini_Project
-# DBMS_Mini_Project
-# DBMS_Mini_Project
+## DBMS Concepts Demonstrated
+- **Table Constraints**: PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, NOT NULL, CASCADE CONSTRAINTS.
+- **Relational Integrity**: Bidirectional Team-Captain and Team-Venue foreign keys.
+- **Complex Subqueries**: Points table calculation with conditional aggregation (`SUM(CASE ...)`).
+- **Analytic Functions**: `DENSE_RANK() OVER (...)` for dynamic standings ranking.
+- **String Matching**: `LIKE` and `UPPER`/`LOWER` pattern matching for player and city search.
+- **Indexes**: Performance indexing on player names, roles, match dates, and scoreboards.

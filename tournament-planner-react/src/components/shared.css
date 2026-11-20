@@ -1,0 +1,348 @@
+/* Shared form styles */
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.section-heading h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin: 0;
+}
+
+.section-count {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-500);
+  padding-top: 6px;
+}
+
+/* Glass form */
+.glass-form {
+  display: grid;
+  gap: 16px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.form-grid-2 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-grid-5 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.glass-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+.glass-input,
+.glass-select {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  padding: 10px 14px;
+  min-height: 44px;
+  width: 100%;
+  font-size: 14px;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: rgba(255,255,255,0.2);
+}
+
+.glass-input:focus,
+.glass-select:focus {
+  border-color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.05);
+}
+
+.glass-select option {
+  background: #1a1a1a;
+  color: var(--white);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  min-height: 40px;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+
+.btn-primary:hover {
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 4px 20px rgba(255,255,255,0.15);
+}
+
+.btn-primary:disabled {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.1);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.06);
+  color: var(--gray-600);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--white);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.btn-danger {
+  background: rgba(255, 60, 60, 0.08);
+  color: rgba(255, 120, 120, 0.8);
+  border-color: rgba(255, 60, 60, 0.15);
+}
+
+.btn-danger:hover {
+  background: rgba(255, 60, 60, 0.15);
+  color: rgba(255, 120, 120, 1);
+  border-color: rgba(255, 60, 60, 0.3);
+}
+
+.btn-sm {
+  font-size: 11px;
+  padding: 6px 12px;
+  min-height: 32px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-message {
+  font-size: 12px;
+  color: rgba(255, 160, 160, 0.9);
+  margin: 0;
+  min-height: 18px;
+}
+
+/* List items */
+.list-container {
+  display: grid;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.list-item:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.list-item__info strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.list-item__info span {
+  display: block;
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-top: 3px;
+}
+
+.list-item__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.empty-msg {
+  color: var(--gray-500);
+  font-size: 13px;
+  padding: 12px 0;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Filter row */
+.filter-row {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Roster grid */
+.roster-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  padding-top: 4px;
+}
+
+.roster-group {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.roster-group h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  color: var(--white);
+}
+
+.roster-player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.roster-player strong {
+  display: block;
+  font-size: 13px;
+  color: var(--white);
+}
+
+.roster-player span {
+  display: block;
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: 2px;
+}
+
+/* Table styles */
+.glass-table-wrap {
+  overflow-x: auto;
+  margin-top: 4px;
+}
+
+.glass-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+  text-align: left;
+}
+
+.glass-table th {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.glass-table td {
+  font-size: 13px;
+  color: var(--gray-700);
+  padding: 14px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.glass-table td.table-emphasis {
+  font-weight: 700;
+  color: var(--white);
+}
+
+.glass-table tr:hover td {
+  background: rgba(255,255,255,0.02);
+}
+
+.stats-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* Layout */
+.two-col-layout {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+@media (max-width: 860px) {
+  .two-col-layout {
+    grid-template-columns: 1fr;
+  }
+  .form-grid-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .form-grid-5 {
+    grid-template-columns: 1fr;
+  }
+  .filter-row {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -1,0 +1,88 @@
+.hero {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.hero__inner {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__eyebrow {
+  font-size: clamp(10px, 1.2vw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gray-500);
+  margin: 0 auto 14px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.hero__title {
+  font-size: clamp(40px, 7.5vw, 88px);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  margin: 0 auto 18px;
+  color: var(--white);
+  text-align: center;
+}
+
+.hero__title--outline {
+  -webkit-text-stroke: 1.5px rgba(255,255,255,0.4);
+  -webkit-text-fill-color: transparent;
+}
+
+.hero__subtitle {
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: 400;
+  color: var(--gray-500);
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+  line-height: 1.5;
+  padding: 0 16px;
+}
+
+.hero__summary {
+  margin-top: clamp(32px, 5vh, 48px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Floating orbs */
+.hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.hero__orb--1 {
+  width: 380px;
+  height: 380px;
+  background: rgba(255, 255, 255, 0.05);
+  top: -80px;
+  right: -80px;
+}
+
+.hero__orb--2 {
+  width: 280px;
+  height: 280px;
+  background: rgba(255, 255, 255, 0.03);
+  bottom: -40px;
+  left: 8%;
+}

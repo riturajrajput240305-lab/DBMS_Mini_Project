@@ -1,0 +1,14 @@
+# DBMS Project Git Ignore
+STUDY_GUIDE.md
+
+# Dependencies & Build artifacts
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# System & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
